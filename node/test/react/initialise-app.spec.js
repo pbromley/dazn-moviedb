@@ -3,8 +3,9 @@ import React from 'react';
 import mock from 'mock-require';
 import {expect} from 'chai';
 import {spy} from 'sinon';
+import App from '../../src/react/App.react';
 
-describe('Initialise app', () => {
+describe('Initial app', () => {
 
     const originalGetElementById = document.getElementById;
 
@@ -21,7 +22,7 @@ describe('Initialise app', () => {
         document.getElementById = spy();
         mock('react-dom', {
             render: component => {
-                expect(component).to.deep.equal(<div></div>);
+                expect(component).to.deep.equal(<App/>);
                 expect(document.getElementById.called).to.equal(true);
                 expect(document.getElementById.getCall(0).args[0]).to.equal('app');
             }
