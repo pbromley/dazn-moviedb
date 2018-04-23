@@ -4,7 +4,7 @@ import mock from 'mock-require';
 import {expect} from 'chai';
 import {spy} from 'sinon';
 
-describe('Initial app', () => {
+describe('Initialise app', () => {
 
     const originalGetElementById = document.getElementById;
 
