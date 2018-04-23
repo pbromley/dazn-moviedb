@@ -18,11 +18,17 @@ const searchSuccess = response => ({
 const clearSearchResults = () => ({key: CLEAR_SEARCH_RESULTS_KEY});
 const noSearchResults = () => ({key: NO_SEARCH_RESULTS_KEY});
 
-const addImageUrl = results =>
-    results.map(result => ({
+const addImageUrl = results => {
+    const generateImageUrl = result => {
+        const path = (result.poster_path || result.profile_path);
+        return path ? api.common.getImage({file: path.substring(1), size: 'w500'}) : '';
+    };
+
+    return results.map(result => ({
         ...result,
-        imageUrl: api.common.getImage({file: (result.poster_path || result.profile_path).substring(1), size: 'w500'})
+        imageUrl: generateImageUrl(result)
     }));
+};
 
 const dataHandler = actionResponse => {
     const {key, data} = actionResponse;

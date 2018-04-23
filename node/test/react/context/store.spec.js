@@ -246,6 +246,20 @@ describe("Store", () => {
 
                 runTest(apiResults, expectedStateData, done);
             });
+
+            it('when profile_path and poster_path not present', done => {
+                const apiResults = {results: [{[shortid()]: shortid()}]};
+                const expectedStateData = {
+                    search: {
+                        results: [{
+                            ...apiResults.results[0],
+                            imageUrl: ''
+                        }]
+                    }
+                };
+
+                runTest(apiResults, expectedStateData, done);
+            });
         });
     });
 
